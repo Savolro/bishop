@@ -1,0 +1,82 @@
+560,561c560,561
+<  * PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports() {
+<  *   return sampgdk_Supports() | SUPPORTS_PROCESS_TICK;
+---
+>  * PLUGIN_EXPORT unsigned int PLUGIN_CALL ISupports() {
+>  *   return sampgdk_ISupports() | SUPPORTS_PROCESS_TICK;
+567c567
+< SAMPGDK_API(unsigned int, sampgdk_Supports(void));
+---
+> SAMPGDK_API(unsigned int, sampgdk_ISupports(void));
+576c576
+<  * This function should be called from Load().
+---
+>  * This function should be called from ILoad().
+578c578
+<  * \param ppData pointer to plugin data as passed to Load()
+---
+>  * \param ppData pointer to plugin data as passed to ILoad()
+582c582
+<  * \see sampgdk_Unload()
+---
+>  * \see sampgdk_IUnload()
+584c584
+< SAMPGDK_API(bool, sampgdk_Load(void **ppData, sampgdk_hidden_t));
+---
+> SAMPGDK_API(bool, sampgdk_ILoad(void **ppData, sampgdk_hidden_t));
+587c587
+<  * \brief Shuts everything down, opposite of sampgdk_Load()
+---
+>  * \brief Shuts everything down, opposite of sampgdk_ILoad()
+589c589
+<  * This function should be called from Unload().
+---
+>  * This function should be called from IUnload().
+591c591
+<  * \see sampgdk_Load()
+---
+>  * \see sampgdk_ILoad()
+593c593
+< SAMPGDK_API(void, sampgdk_Unload(sampgdk_hidden_t));
+---
+> SAMPGDK_API(void, sampgdk_IUnload(sampgdk_hidden_t));
+602c602
+<  * on every server tick. The plugin's ProcessTick() function might be
+---
+>  * on every server tick. The plugin's IProcessTick() function might be
+605c605
+< SAMPGDK_API(void, sampgdk_ProcessTick(sampgdk_hidden_t));
+---
+> SAMPGDK_API(void, sampgdk_IProcessTick(sampgdk_hidden_t));
+646,648c646,648
+< /// \brief C++ wrapper around sampgdk_Supports()
+< inline unsigned int Supports() {
+<   return sampgdk_Supports();
+---
+> /// \brief C++ wrapper around sampgdk_ISupports()
+> inline unsigned int ISupports() {
+>   return sampgdk_ISupports();
+651,653c651,653
+< /// \brief C++ wrapper around sampgdk_Load()
+< inline bool Load(void **ppData) {
+<   return sampgdk_Load(ppData, 0);
+---
+> /// \brief C++ wrapper around sampgdk_ILoad()
+> inline bool ILoad(void **ppData) {
+>   return sampgdk_ILoad(ppData, 0);
+656,658c656,658
+< /// \brief C++ wrapper around sampgdk_Unload()
+< inline void Unload() {
+<   sampgdk_Unload(0);
+---
+> /// \brief C++ wrapper around sampgdk_IUnload()
+> inline void IUnload() {
+>   sampgdk_IUnload(0);
+661,663c661,663
+< /// \brief C++ wrapper around sampgdk_ProcessTick()
+< inline void ProcessTick() {
+<   sampgdk_ProcessTick(0);
+---
+> /// \brief C++ wrapper around sampgdk_IProcessTick()
+> inline void IProcessTick() {
+>   sampgdk_IProcessTick(0);

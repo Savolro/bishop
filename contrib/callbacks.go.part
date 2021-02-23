@@ -1,0 +1,29 @@
+package bishop
+
+import (
+	"unsafe"
+)
+
+// #cgo LDFLAGS: -ldl
+import "C"
+
+//export Supports
+func Supports() C.uint {
+	return C.uint(ISupports())
+}
+
+//export Load
+func Load(ppData **C.void) bool {
+	return ILoad((*uintptr)(unsafe.Pointer(ppData)), 0)
+}
+
+//export Unload
+func Unload() {
+	IUnload(0)
+}
+
+//export ProcessTick
+func ProcessTick() {
+	IProcessTick(0)
+}
+

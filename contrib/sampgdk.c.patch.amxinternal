@@ -1,0 +1,24 @@
+2508,2510c2508,2510
+< #undef sampgdk_Load
+< #undef sampgdk_Unload
+< #undef sampgdk_ProcessTick
+---
+> #undef sampgdk_ILoad
+> #undef sampgdk_IUnload
+> #undef sampgdk_IProcessTick
+2582c2582
+< SAMPGDK_API(unsigned int, sampgdk_Supports(void)) {
+---
+> SAMPGDK_API(unsigned int, sampgdk_ISupports(void)) {
+2586c2586
+< SAMPGDK_API(bool, sampgdk_Load(void **ppData, sampgdk_hidden_t hidden)) {
+---
+> SAMPGDK_API(bool, sampgdk_ILoad(void **ppData, sampgdk_hidden_t hidden)) {
+2590c2590
+< SAMPGDK_API(void, sampgdk_Unload(sampgdk_hidden_t hidden)) {
+---
+> SAMPGDK_API(void, sampgdk_IUnload(sampgdk_hidden_t hidden)) {
+2594c2594
+< SAMPGDK_API(void, sampgdk_ProcessTick(sampgdk_hidden_t hidden)) {
+---
+> SAMPGDK_API(void, sampgdk_IProcessTick(sampgdk_hidden_t hidden)) {

@@ -1,0 +1,391 @@
+438,480d429
+< 
+< /**
+<  * \brief A generic catch-all callback that gets called whenever some
+<  * AMX public function is executed
+<  *
+<  * This is the publics "filter" callback. It is called whenever the
+<  * server calls \c amx_Exec(), which practically means that you can
+<  * use it to hook *any* callback, even those that are called by other
+<  * plugins.
+<  *
+<  * \param amx AMX on which the function is called
+<  * \param name function name
+<  * \param params function arguments as stored on the AMX stack, with
+<  *        \c params[0] being set to the number of arguments multiplied
+<  *        by \c sizeof(cell)
+<  * \param retval where to store the return value (can be \c NULL)
+<  *
+<  * \returns \c true if the public is allowed to execute
+<  */
+< SAMPGDK_CALLBACK(bool, OnPublicCall(AMX *amx, const char *name,
+<     cell *params, cell *retval));
+< 
+< /**
+<  * \brief A generic catch-all callback that gets called whenever some
+<  * AMX public function is executed
+<  *
+<  * This callback is similar to \c OnPublicCall but also allows you to
+<  * stop the call from being propagated to other plugins or the gamemode
+<  * by setting the \c stop parameter to \c true.
+<  *
+<  * \param amx AMX on which the function is called
+<  * \param name function name
+<  * \param params function arguments as stored on the AMX stack, with
+<  *        \c params[0] being set to the number of arguments multiplied
+<  *        by \c sizeof(cell)
+<  * \param retval where to store the return value (can be \c NULL)
+<  * \param stop whether to stop public call propagation (\c false by default)
+<  *
+<  * \returns \c true if the public is allowed to execute
+<  */
+< SAMPGDK_CALLBACK(bool, OnPublicCall2(AMX *amx, const char *name,
+<     cell *params, cell *retval, bool *stop));
+< 
+3906,4248d3854
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnGameModeInit">OnGameModeInit on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnGameModeInit());
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnGameModeExit">OnGameModeExit on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnGameModeExit());
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerConnect">OnPlayerConnect on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerConnect(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerDisconnect">OnPlayerDisconnect on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerDisconnect(int playerid, int reason));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerSpawn">OnPlayerSpawn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerSpawn(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerDeath">OnPlayerDeath on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerDeath(int playerid, int killerid, int reason));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleSpawn">OnVehicleSpawn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleSpawn(int vehicleid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleDeath">OnVehicleDeath on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleDeath(int vehicleid, int killerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerText">OnPlayerText on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerText(int playerid, const char * text));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerCommandText">OnPlayerCommandText on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerCommandText(int playerid, const char * cmdtext));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerRequestClass">OnPlayerRequestClass on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerRequestClass(int playerid, int classid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerEnterVehicle">OnPlayerEnterVehicle on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerEnterVehicle(int playerid, int vehicleid, bool ispassenger));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerExitVehicle">OnPlayerExitVehicle on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerExitVehicle(int playerid, int vehicleid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerStateChange">OnPlayerStateChange on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerStateChange(int playerid, int newstate, int oldstate));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerEnterCheckpoint">OnPlayerEnterCheckpoint on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerEnterCheckpoint(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerLeaveCheckpoint">OnPlayerLeaveCheckpoint on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerLeaveCheckpoint(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerEnterRaceCheckpoint">OnPlayerEnterRaceCheckpoint on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerEnterRaceCheckpoint(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerLeaveRaceCheckpoint">OnPlayerLeaveRaceCheckpoint on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerLeaveRaceCheckpoint(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnRconCommand">OnRconCommand on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnRconCommand(const char * cmd));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerRequestSpawn">OnPlayerRequestSpawn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerRequestSpawn(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnObjectMoved">OnObjectMoved on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnObjectMoved(int objectid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerObjectMoved">OnPlayerObjectMoved on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerObjectMoved(int playerid, int objectid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerPickUpPickup">OnPlayerPickUpPickup on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerPickUpPickup(int playerid, int pickupid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleMod">OnVehicleMod on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleMod(int playerid, int vehicleid, int componentid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnEnterExitModShop">OnEnterExitModShop on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnEnterExitModShop(int playerid, bool enterexit, int interiorid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehiclePaintjob">OnVehiclePaintjob on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehiclePaintjob(int playerid, int vehicleid, int paintjobid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleRespray">OnVehicleRespray on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleRespray(int playerid, int vehicleid, int color1, int color2));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleDamageStatusUpdate">OnVehicleDamageStatusUpdate on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleDamageStatusUpdate(int vehicleid, int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnUnoccupiedVehicleUpdate">OnUnoccupiedVehicleUpdate on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnUnoccupiedVehicleUpdate(int vehicleid, int playerid, int passenger_seat, float new_x, float new_y, float new_z, float vel_x, float vel_y, float vel_z));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerSelectedMenuRow">OnPlayerSelectedMenuRow on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerSelectedMenuRow(int playerid, int row));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerExitedMenu">OnPlayerExitedMenu on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerExitedMenu(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerInteriorChange">OnPlayerInteriorChange on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerInteriorChange(int playerid, int newinteriorid, int oldinteriorid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerKeyStateChange">OnPlayerKeyStateChange on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerKeyStateChange(int playerid, int newkeys, int oldkeys));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnRconLoginAttempt">OnRconLoginAttempt on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnRconLoginAttempt(const char * ip, const char * password, bool success));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerUpdate">OnPlayerUpdate on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerUpdate(int playerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerStreamIn">OnPlayerStreamIn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerStreamIn(int playerid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerStreamOut">OnPlayerStreamOut on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerStreamOut(int playerid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleStreamIn">OnVehicleStreamIn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleStreamIn(int vehicleid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleStreamOut">OnVehicleStreamOut on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleStreamOut(int vehicleid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnActorStreamIn">OnActorStreamIn on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnActorStreamIn(int actorid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnActorStreamOut">OnActorStreamOut on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnActorStreamOut(int actorid, int forplayerid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnDialogResponse">OnDialogResponse on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnDialogResponse(int playerid, int dialogid, int response, int listitem, const char * inputtext));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerTakeDamage">OnPlayerTakeDamage on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerTakeDamage(int playerid, int issuerid, float amount, int weaponid, int bodypart));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerGiveDamage">OnPlayerGiveDamage on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerGiveDamage(int playerid, int damagedid, float amount, int weaponid, int bodypart));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerGiveDamageActor">OnPlayerGiveDamageActor on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerGiveDamageActor(int playerid, int damaged_actorid, float amount, int weaponid, int bodypart));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerClickMap">OnPlayerClickMap on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerClickMap(int playerid, float fX, float fY, float fZ));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerClickTextDraw">OnPlayerClickTextDraw on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerClickTextDraw(int playerid, int clickedid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerClickPlayerTextDraw">OnPlayerClickPlayerTextDraw on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerClickPlayerTextDraw(int playerid, int playertextid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnIncomingConnection">OnIncomingConnection on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnIncomingConnection(int playerid, const char * ip_address, int port));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnTrailerUpdate">OnTrailerUpdate on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnTrailerUpdate(int playerid, int vehicleid));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnVehicleSirenStateChange">OnVehicleSirenStateChange on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnVehicleSirenStateChange(int playerid, int vehicleid, int newstate));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerClickPlayer">OnPlayerClickPlayer on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerClickPlayer(int playerid, int clickedplayerid, int source));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerEditObject">OnPlayerEditObject on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerEditObject(int playerid, bool playerobject, int objectid, int response, float fX, float fY, float fZ, float fRotX, float fRotY, float fRotZ));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerEditAttachedObject">OnPlayerEditAttachedObject on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerEditAttachedObject(int playerid, int response, int index, int modelid, int boneid, float fOffsetX, float fOffsetY, float fOffsetZ, float fRotX, float fRotY, float fRotZ, float fScaleX, float fScaleY, float fScaleZ));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerSelectObject">OnPlayerSelectObject on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerSelectObject(int playerid, int type, int objectid, int modelid, float fX, float fY, float fZ));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerWeaponShot">OnPlayerWeaponShot on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerWeaponShot(int playerid, int weaponid, int hittype, int hitid, float fX, float fY, float fZ));
+< 
+< /**
+<  * \ingroup callbacks
+<  * \see <a href="http://wiki.sa-mp.com/wiki/OnPlayerRequestDownload">OnPlayerRequestDownload on SA-MP Wiki</a>
+<  */
+< SAMPGDK_CALLBACK(bool, OnPlayerRequestDownload(int playerid, int type, int crc));
+< 
+4293,4294d3898
+< 
+< SAMPGDK_CALLBACK(void, OnHTTPResponse(int index, int response_code, const char * data));
