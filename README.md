@@ -9,6 +9,7 @@ Basically, swig and some code generation.
 # TODO
 - [ ] Windows
 - [ ] Argument names in `bishop.go` file (SWIG lacks such functionallity)
+- [ ] Add possibility to get strings. E. g. `GetPlayerName`
 
 # Example
 ``` go
